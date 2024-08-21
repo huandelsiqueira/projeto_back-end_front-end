@@ -1,0 +1,140 @@
+/* Estilo para o nav */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between; /* Espaça o conteúdo entre os extremos */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    background-color: rgba(0, 0, 0, 0.50); /* Cor de fundo preta com 35% de transparência */
+    padding: 10px 20px;
+  }
+  
+  /* Estilo para a imagem dentro do nav */
+  .img-nav-header {
+    max-width: 90px; /* Define um tamanho máximo para a imagem */
+    height: auto; /* Mantém a proporção da imagem */
+  }
+  
+  /* Estilo para a lista de navegação */
+  .nav-header ul {
+    list-style: none; /* Remove os marcadores padrão */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Exibe os links em linha */
+    gap: 15px; /* Espaçamento entre os links */
+  }
+  
+  /* Estilo para os links */
+  .nav-header ul li a {
+    text-decoration: none; /* Remove o sublinhado dos links */
+    color: white; /* Cor do texto */
+    padding: 8px 12px; /* Espaçamento interno nos links */
+    border-radius: 4px; /* Bordas arredondadas */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Animação suave */
+  }
+  
+  /* Estilo específico para o link de cadastro */
+  .nav-header ul li a[href*="cadastrarUsuario"] {
+    background-color: white; /* Fundo branco */
+    color: black; /* Texto preto */
+    font-weight: bold; /* Texto em negrito */
+  }
+  
+  /* Estilo específico para o link de login */
+  .nav-header ul li a[href*="login"] {
+    border: 2px solid white; /* Borda branca */
+    background-color: transparent; /* Fundo transparente */
+    color: white; /* Texto branco */
+    font-weight: bold; /* Texto em negrito */
+  }
+  
+  /* Efeito hover nos links */
+  .nav-header ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo branco com transparência */
+    color: #000; /* Texto preto */
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .nav-header {
+      flex-direction: column; /* Navegação em coluna em telas menores */
+    }
+    .nav-header ul {
+      justify-content: center; /* Centraliza a lista */
+    }
+  }
+
+
+
+
+  .secao-img-pagina-inicial {
+    position: relative; /* Permite o posicionamento absoluto do header */
+    height: 100vh; /* Define a altura da seção para ocupar a tela inteira */
+    background-image: url('../../images/background/geranimo-qzgN45hseN0-unsplash.webp'); /* Substitua pelo URL da imagem de fundo */
+    background-size: cover; /* Faz a imagem de fundo cobrir toda a seção */
+    background-position: center; /* Centraliza a imagem de fundo */
+    background-attachment: fixed; /* Efeito de cascata */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o conteúdo verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    color: white; /* Define a cor do texto como branca */
+    text-align: center; /* Centraliza o texto */
+    padding-top: 60px; /* Espaçamento para o header */
+}
+
+.secao-img-pagina-inicial h1 {
+    font-size: 4rem; /* Aumenta o tamanho do h1 */
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif; /* Adiciona margem superior para separar do header */
+}
+
+.secao-img-pagina-inicial input[type="search"] {
+    width: 600px;
+    margin-top: 50px; /* Aumenta a largura do input */
+    height: 40px; /* Aumenta a altura do input */
+    font-size: 1.2rem; /* Aumenta o tamanho do texto no input */
+    padding: 10px; /* Adiciona espaçamento interno */
+    border-radius: 5px; /* Adiciona bordas arredondadas */
+    border: none; /* Remove as bordas padrão */
+}
+
+.secao-img-pagina-inicial header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10; /* Garante que o header fique acima da imagem de fundo */
+}
+
+
+.box-index {
+    display: flex;
+    justify-content: center; /* Centraliza as boxes horizontalmente */
+    align-items: center;
+    flex-wrap: wrap; /* Permite que as boxes se ajustem em múltiplas linhas, se necessário */
+    gap: 20px; /* Espaçamento entre as boxes */
+    padding: 20px;
+}
+
+.box {
+    background-color: #f0f0f0; /* Cor de fundo cinza claro */
+    padding: 50px;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar destaque às boxes */
+    width: 300px; /* Largura fixa para cada box */
+    text-align: center; /* Centraliza o conteúdo do texto */
+    transition: transform 0.3s ease; /* Animação suave ao passar o mouse */
+}
+
+.box:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+a {
+    text-decoration: none; /* Remove sublinhado dos links */
+    color: inherit; /* Mantém a cor do texto dentro do link */
+}

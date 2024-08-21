@@ -1,6 +1,6 @@
 <header>
-    <nav>
-        <a href="./index.php"><img src="../../images/logomarca/logomarca.svg" alt="Logomarca do sistema 'Ambientalização'" title="Logomarca do sistema 'Ambientalização'"></a>
+    <nav class="nav-header">
+        <a href="./index.php"><img src="../../images/logomarca/logomarca.svg" alt="Logomarca do sistema 'Ambientalização'" class="img-nav-header" title="Logomarca do sistema 'Ambientalização'"></a>
         <ul>
             <li><a href="#">Sobre</a></li>
             <li><a href="#">Metas</a></li>

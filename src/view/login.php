@@ -3,17 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../public/css/style.css">
   <title>Página de Login</title>
 </head>
 <body>
   <main>
     <section>
-      
-    </section>
-    <section>
-      <section>
-        <a href="./index.php"><img src="../../images/logomarca/logomarca.svg" alt="Logomarca do sistema 'Ambientalização'" title="Logomarca do sistema 'Ambientalização'"></a>
-        <img src="../../images/background/geranimo-qzgN45hseN0-unsplash.webp">
+      <section class="image-login">
+        
       </section>
       <section>
         <form action="includes/logica/logica_pessoa.php" method="post">
