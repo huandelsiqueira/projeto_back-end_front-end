@@ -1,17 +1,37 @@
-<link rel="stylesheet" href="assets/css/index.css">
-<title>Login</title>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Login</title>
 </head>
 <body>
-<?php require('../../includes/components/header.php') ?>
-<main>
-<h1> Login </h1>
+  <main>
     <section>
-    <form action="includes/logica/logica_pessoa.php" method="post">
-      <p><label for="email">Email: </label><input type="text" name="email" id="email"></p>
-      <p><label for="senha">Senha: </label><input type="password" name="senha" id="senha"></p>
-      <p><button type="submit" id='entrar' name='entrar' value="Entrar"> Entrar </button>  </p>      
-    </form>
+      
     </section>
-</main>
+    <section>
+      <section>
+        <a href="./index.php"><img src="../../images/logomarca/logomarca.svg" alt="Logomarca do sistema 'Ambientalização'" title="Logomarca do sistema 'Ambientalização'"></a>
+        <img src="../../images/background/geranimo-qzgN45hseN0-unsplash.webp">
+      </section>
+      <section>
+        <form action="includes/logica/logica_pessoa.php" method="post">
+          <label for="email">Email:</label>
+          <br>
+          <input type="text" name="email" id="email" placeholder="usuario@email.com">
+          <br>
+          <br>
+          <label for="senha">Senha:</label>
+          <br>
+          <input type="password" name="senha" id="senha" placeholder="********">
+          <br>
+          <br>
+          <button type="submit" id='entrar' name='entrar' value="Entrar">Login</button>
+        </form>
+        <p>Não possui conta? <a href="../../src/view/cadastrarUsuario.php"><strong>Cadastre-se</strong></a></p>
+      </section>
+    </section>
+  </main>
 </body>
 </html>

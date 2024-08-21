@@ -1,23 +1,38 @@
-<?php
- include_once('includes/components/cabecalho.php');
-?>
-    <link rel="stylesheet" href="assets/css/index.css">
-    <title>Cadastrar Usuário</title>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Cadastro</title>
 </head>
 <body>
-<?php require('includes/componentes/header.php') ?>
-<main>
-    <section>
-    <form action="includes/logica/logica_pessoa.php" method="post" enctype="multipart/form-data">
-      <p><label for="nome">Nome: </label><input type="text" name="nome" id="nome"></p>
-      <p><label for="email">email: </label><input type="text" name="email" id="email"></p>
-      <p><label for="cpf">CPF: </label><input type="text" name="cpf" id="cpf"></p>
-      <p><label for="senha">Senha: </label> <input type="password" name="senha" id="senha"></p>
-      <p><label for="imagem">Foto: </label> <input type="file" name="imagem" id="imagem"></p>
-      <p><button type="submit" id='cadastrar' name='cadastrar' value="Cadastrar"> Cadastrar </button>  </p>      
+<?php require('../../includes/components/header.php') ?>
+  <section>
+    <form action="../controller/UsuarioController.php" method="post" enctype="multipart/form-data">
+      <label for="nome">Nome:</label>
+      <br>
+      <input type="text" name="nome" id="nome">
+      <br>
+      <br>                 
+      <label for="email">Email:</label>
+      <br>
+      <input type="text" name="email" id="email">
+      <br>
+      <br>
+      <label for="senha">Senha:</label>
+      <br>
+      <input type="password" name="senha" id="senha">
+      <br>
+      <br>
+      <label for="imagem">Foto:</label>
+      <br>
+      <input type="file" name="imagem" id="imagem">
+      <br>
+      <br>
+      <br>
+      <button type="submit" id='cadastrar' name='cadastrar' value="Cadastrar">Cadastrar</button>        
     </form>
-    </section>
-</main>
-<?php require('includes/componentes/footer.php');?>
+  </section>
+<?php require('../../includes/components/footer.php') ?>
 </body>
 </html>

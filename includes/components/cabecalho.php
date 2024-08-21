@@ -3,7 +3,11 @@
 session_start();
 if(!$_SESSION['logado']) {
 
-	header('location:login.php');
+	header('location:index.php');
+
+} else {
+
+    header('location:cadastrarUsuario.php');
 
 }
 

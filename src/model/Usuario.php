@@ -1,116 +1,121 @@
 <?php
 
-class Usuario {
+Class Usuario {
 
-    private $pdo;
-    private $id;
-    private $nome;
-    private $email;
+    private $conexao;
 
-    public function __construct($pdo, $id, $nome, $email) {
-
-        $this->pdo = $pdo;
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->email = $email;
-
+    public function __construct($conexao) {
+        $this->conexao = $conexao;
     }
 
-    /**
-     * Get the value of pdo
-     */ 
-    public function getPdo()
-    {
-        return $this->pdo;
-    }
-
-    /**
-     * Set the value of pdo
-     *
-     * @return  self
-     */ 
-    public function setPdo($pdo)
-    {
-        $this->pdo = $pdo;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id
-     *
-     * @return  self
-     */ 
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of nome
-     */ 
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * Set the value of nome
-     *
-     * @return  self
-     */ 
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of email
-     */ 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @return  self
-     */ 
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function salvar() {
-
-        if ($this->id) {
-
-            $sql = "UPDATE usuarios SET nome = :nome, email = :email WHERE id = :id";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['nome' => $this->nome, 'email' => $this->email, 'id' => $this->id]);
-
-        } else {
-
-            $sql = "INSERT INTO usuarios (nome, email) VALUES (:nome, :email)";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['nome' => $this->nome, 'email' => $this->email]);
-            
+    public function inserirUsuario($usuario) {
+        try {
+            $query = $this->conexao->prepare("INSERT INTO usuario (nome, email, senha, imagem) VALUES (:nome, :email, :senha, :imagem)");
+            $resultado = $query->execute([
+                'nome' => $usuario->nome,
+                'email' => $usuario->email,
+                'senha' => $usuario->senha,
+                'imagem' => $usuario->imagem
+            ]);
+            return $resultado;
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+            return false;
         }
+    }
+
+
+    function alterarUsuario($usuario){
+        try {
+            $query = $this->conexao->prepare("update usuario set nome= :nome, email = :email, senha= :senha where idusuario = :idusuario");
+            $resultado = $query->execute(['nome' => $usuario->getnome(),'email' => $usuario->getemail(), 'senha' => $usuario->getsenha(),'idusuario' => $usuario->getIdUsuario()]);   
+            return $resultado;
+        }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+
+    function deletarUsuario($usuario){
+        try {
+            $query = $this->conexao->prepare("delete from usuario where idusuario = :idusuario");
+            $resultado = $query->execute(['idusuario' => $usuario->getIdUsuario()]);   
+             return $resultado;
+        }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+
+    }
+ 
+    function listarUsuario(){
+      try {
+        $query = $this->conexao->prepare("SELECT * FROM usuario");      
+        $query->execute();
+        $usuarios = $query->fetchAll();
+        return $usuarios;
+      }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+      }  
+
+    }
+
+     function buscarUsuario($usuario){
+        try {
+        $query = $this->conexao->prepare("select * from usuario where idusuario=:idusuario");
+        if($query->execute(['idusuario' => $usuario->getIdUsuario()])){
+            $usuario = $query->fetch(); //coloca os dados num array $usuario
+            return $usuario;
+        }
+        else{
+            return false;
+        }
+         }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+      }  
+    }
+
+    function acessarUsuario($usuario){
+        try {
+        $query = $this->conexao->prepare("select * from usuario where email=:email and senha=:senha");
+        if($query->execute(['email' => $usuario->getemail(), 'senha' => $usuario->getsenha()])){
+            $usuario = $query->fetch(); //coloca os dados num array $usuario
+          if ($usuario)
+            {  
+                return $usuario;
+            }
+        else
+            {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+         }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+      }  
+    }
+
+ function pesquisarUsuario($usuario){
+        try {
+        $query = $this->conexao->prepare("select * from usuario where upper(nome) like :nome");
+        if($query->execute(['nome' => $usuario->getnome()])){
+            $usuarios = $query->fetchAll(); //coloca os dados num array $usuario
+          if ($usuarios)
+            {  
+                return $usuarios;
+            }
+        else
+            {
+                return false;
+            }
+        }
+        else{
+            return false;
+        }
+         }catch(PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+      }  
     }
 
 }
