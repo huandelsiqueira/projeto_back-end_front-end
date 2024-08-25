@@ -6,7 +6,7 @@
 </head>
 <body>
         <footer>
-                <p>Ambientalização &copy; - Desenvolvido por <a href="https://github.com/huandelsiqueira" target="_blank"><strong>Huandel Siqueira das Neves</strong></a></p>
+                <p id="paragrafo-footer">Ambientalização &copy; - Desenvolvido por <a href="https://github.com/huandelsiqueira" target="_blank"><strong>Huandel Siqueira das Neves</strong></a></p>
         </footer>
 </body>
 </html>

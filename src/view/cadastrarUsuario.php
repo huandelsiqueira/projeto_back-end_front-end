@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página de Cadastro</title>
+  <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
-<?php require('../../includes/components/header.php') ?>
   <section>
     <form action="../controller/UsuarioController.php" method="post" enctype="multipart/form-data">
       <label for="nome">Nome:</label>
@@ -30,7 +30,7 @@
       <br>
       <br>
       <br>
-      <button type="submit" id='cadastrar' name='cadastrar' value="Cadastrar">Cadastrar</button>        
+      <button type="submit" id='cadastrar' name='cadastrar' value="cadastro">Cadastrar</button>        
     </form>
   </section>
 <?php require('../../includes/components/footer.php') ?>

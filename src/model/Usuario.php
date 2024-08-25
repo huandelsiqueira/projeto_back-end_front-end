@@ -74,26 +74,21 @@ Class Usuario {
       }  
     }
 
-    function acessarUsuario($usuario){
+    public function acessarUsuario($email, $senha) {
         try {
-        $query = $this->conexao->prepare("select * from usuario where email=:email and senha=:senha");
-        if($query->execute(['email' => $usuario->getemail(), 'senha' => $usuario->getsenha()])){
-            $usuario = $query->fetch(); //coloca os dados num array $usuario
-          if ($usuario)
-            {  
-                return $usuario;
+            $query = $this->conexao->prepare("SELECT * FROM usuario WHERE email = :email AND senha = :senha");
+            $query->execute(['email' => $email, 'senha' => $senha]);
+            $usuario = $query->fetch(); // Coloca os dados num array $usuario
+            
+            if ($usuario) {
+                return $usuario; // Retorna o usuário encontrado
+            } else {
+                return false; // Retorna falso se não encontrar o usuário
             }
-        else
-            {
-                return false;
-            }
-        }
-        else{
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
             return false;
         }
-         }catch(PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
-      }  
     }
 
  function pesquisarUsuario($usuario){
