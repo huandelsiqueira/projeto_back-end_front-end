@@ -1,7 +1,7 @@
 <?php
 
 class Evento {
-    public $id;
+    public $idevento;
     public $nome;
     public $descricao;
     public $conteudo;
@@ -22,15 +22,15 @@ class Evento {
      */
     public function getId()
     {
-        return $this->id;
+        return $this->idevento;
     }
 
     /**
      * Set the value of id
      */
-    public function setId($id): self
+    public function setId($idevento): self
     {
-        $this->id = $id;
+        $this->id = $idevento;
 
         return $this;
     }

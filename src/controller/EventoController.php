@@ -12,14 +12,14 @@ class EventoController {
     }
 
     public function listar() {
-        $stmt = $this->conexao->prepare("SELECT * FROM eventos");
+        $stmt = $this->conexao->prepare("SELECT idevento, nome, descricao, conteudo, data_inicio, data_fim, idUsuario FROM eventos");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, 'Evento');
     }
 
-    public function buscar($id) {
+    public function buscar($idevento) {
         $stmt = $this->conexao->prepare("SELECT * FROM eventos WHERE idevento = :id");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':id', $idevento, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchObject('Evento');
     }

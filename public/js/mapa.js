@@ -1,62 +1,82 @@
-function initMap() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var userLocation = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+var map = L.map('map');
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: userLocation,
-                zoom: 14
-            });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
 
-            var marker = new google.maps.Marker({
-                position: userLocation,
-                map: map,
-                title: 'Sua localização'
-            });
+        var pontosColeta = [
+            {"name": "Ecoponto Fragata", "coords": [-31.74600187264455, -52.39384350919012]},
+            {"name": "Ecoponto Cerquinha - SANEP", "coords": [-31.761841400845306, -52.34905649847769]},
+            {"name": "Ecoponto Centro", "coords": [-31.754026315016013, -52.33110700847719]},
+            {"name": "Ecoponto Laranjal", "coords": [-31.769343452149187, -52.23381005766929]}
+        ];
 
-            var request = {
-                location: userLocation,
-                radius: '5000',
-                type: ['recycling_center', 'florist', 'local_government_office']
-            };
+        var protecaoAmbiental = [
+            {"name": "PATRAM Pelotas - Polícia Ambiental", "coords": [-31.783134027251258, -52.341603896506946]},
+            {"name": "Secretaria Municipal de Qualidade Amiental - SMQA", "coords": [-31.755176721320826, -52.319755509173056]}
+            
+        ];
 
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch(request, function(results, status) {
-                if (status == google.maps.places.PlacesServiceStatus.OK) {
-                    for (var i = 0; i < results.length; i++) {
-                        var place = results[i];
-                        createMarker(place);
-                    }
-                }
-            });
-
-            function createMarker(place) {
-                var placeLoc = place.geometry.location;
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: placeLoc
-                });
-
-                google.maps.event.addListener(marker, 'click', function() {
-                    var infoWindow = new google.maps.InfoWindow();
-                    infoWindow.setContent(place.name);
-                    infoWindow.open(map, this);
-                });
-            }
-
-        }, function() {
-            handleLocationError(true, map.getCenter());
+        var userIcon = L.icon({
+            iconUrl: 'https://img.icons8.com/?size=100&id=7880&format=png&color=DD1C1C', // URL da imagem de boneco vermelha
+            iconSize: [38, 38], 
+            iconAnchor: [22, 38], 
+            popupAnchor: [-3, -38] 
         });
-    } else {
-        handleLocationError(false, map.getCenter());
-    }
-}
 
-function handleLocationError(browserHasGeolocation, pos) {
-    alert(browserHasGeolocation ?
-          'Erro: O serviço de Geolocation falhou.' :
-          'Erro: Seu navegador não suporta Geolocation.');
-}
+        var protecaoIcon = L.icon({
+            iconUrl: 'https://img.icons8.com/?size=100&id=7880&format=png&color=28A745', // URL da imagem de boneco verde
+            iconSize: [38, 38], 
+            iconAnchor: [22, 38], 
+            popupAnchor: [-3, -38] 
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLat = position.coords.latitude;
+                var userLon = position.coords.longitude;
+
+                map.setView([userLat, userLon], 13);
+
+                pontosColeta.forEach(function(ponto) {
+                    L.marker(ponto.coords)
+                        .addTo(map)
+                        .bindPopup(`<b>${ponto.name}</b>`)
+                        .openPopup();
+                });
+
+                protecaoAmbiental.forEach(function(ponto) {
+                    L.marker(ponto.coords, {icon: protecaoIcon})
+                    .addTo(map)
+                    .bindPopup(`<b>${ponto.name}</b>`)
+                    .openPopup();
+                });
+
+                L.marker([userLat, userLon], {icon: userIcon})
+                    .addTo(map)
+                    .bindPopup("<b>Você está aqui!</b>")
+                    .openPopup();
+
+            }, function() {
+                alert("Não foi possível obter a sua localização. O mapa será centralizado em Pelotas, RS.");
+                map.setView([-31.7654, -52.3371], 13);
+
+                pontosColeta.forEach(function(ponto) {
+                    L.marker(ponto.coords)
+                        .addTo(map)
+                        .bindPopup(`<b>${ponto.name}</b>`)
+                        .openPopup();
+                });
+            });
+        } else {
+            alert("Geolocalização não é suportada por este navegador.");
+            map.setView([-31.7654, -52.3371], 13);
+
+            pontosColeta.forEach(function(ponto) {
+                L.marker(ponto.coords)
+                    .addTo(map)
+                    .bindPopup(`<b>${ponto.name}</b>`)
+                    .openPopup();
+            });
+        }

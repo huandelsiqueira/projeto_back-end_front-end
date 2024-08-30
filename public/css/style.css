@@ -314,3 +314,120 @@ a {
 .formulario-login form a:hover {
   text-decoration: underline;
 }
+
+.cadastro {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-cadastro {
+  flex: 1.5; /* Aumenta o tamanho do formulário em relação à imagem */
+  max-width: 600px; /* Limite de largura para evitar que fique muito grande */
+  padding: 60px 40px; /* Aumenta o espaçamento interno */
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  position: relative;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+ /* Bordas arredondadas */
+}
+
+.formulario-cadastro h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.formulario-cadastro form label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #374B47;
+  font-size: 1rem;
+  font-weight: bold; /* Tamanho da fonte maior */
+}
+
+.formulario-cadastro input,
+.formulario-cadastro textarea {
+  width: 400px;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem; 
+}
+
+.formulario-cadastro textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.formulario-cadastro button {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 20px;
+  background-color: #374B47;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.formulario-cadastro button:hover {
+  background-color: #2d4c3c;
+}
+
+.imagem-cadastro {
+  position: relative; /* Certifique-se de que o posicionamento seja relativo ao contêiner */
+  flex: 1;
+  background-image: url(../../images/background/todd-cravens-QnBrjY-nFUs-unsplash.jpg);
+  background-size: cover; /* Garante que a imagem cubra toda a seção */
+  background-position: center center; /* Centraliza a imagem na seção */
+  background-repeat: no-repeat; /* Evita repetição da imagem */
+  flex: 1;
+  position: relative;
+  display: flex; /* Permite centralizar o conteúdo */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  z-index: 1; /* Defina o z-index para baixo */
+}
+
+.imagem-cadastro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(62, 78, 98, 0.55); /* Overlay */
+  z-index: 2; /* Apenas sobre a imagem de cadastro */
+} 
+
+.imagem-cadastro h1, .imagem-cadastro p {
+  position: absolute;
+  color: white;
+  text-align: center;
+  z-index: 3; /* Garante que o texto fique acima do overlay */
+} 
+
+.imagem-cadastro h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 6rem;
+  margin-bottom: 150px;
+} 
+
+.imagem-cadastro p {
+  font-size: 1.5rem;
+} 
+
+#map {
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(194, 194, 194);
+}

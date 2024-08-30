@@ -30,6 +30,8 @@
           <button type="submit" id='login' name='login' value="login">Login</button>
         </form>
         <p>Não possui conta? <a href="../../src/view/cadastrarUsuario.php"><strong>Cadastre-se</strong></a></p>
+        <br>
+        <a href="./index.php"><p>Voltar</p></a>
       </section>
     </section>
   </main>

@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Criar Evento</title>
+    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 <body>
     <h1>Criar Evento</h1>
@@ -40,5 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Criar Evento</button>
     </form>
+    <section class="imagem-evento-cadastro">
+
+    </section>
 </body>
 </html>
