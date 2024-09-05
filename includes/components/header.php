@@ -19,11 +19,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <a href="./index.php"><img src="../../images/logomarca/logomarca.svg" alt="Logomarca do sistema 'Ambientalização'" class="img-nav-header" title="Logomarca do sistema 'Ambientalização'"></a>
         <ul>
             <li><a href="#">Sobre</a></li>
-            <li><a href="#">Metas</a></li>
+            <li><a href="../../src/view/paginaMeta.php">Metas</a></li>
             <li><a href="../../src/view/paginaEvento.php">Eventos</a></li>
             <li><a href="../../src/view/minhaLocalizacao.php">Perto de mim</a></li>
             <?php if (isset($_SESSION['usuario_nome'])): ?>
-                <li class="bem-vindo">Bem-vindo, <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></li>
+                <li class="bem-vindo">Bem-vindo, <a id="perfil" href="../../src/view/exibirPerfil.php"> <?php echo htmlspecialchars($_SESSION['usuario_nome']); ?></a></li>
                 <li><a href="../controller/UsuarioController.php?acao=logout">Logout</a></li>
             <?php else: ?>
                 <li><a href="../../src/view/login.php">Login</a></li>

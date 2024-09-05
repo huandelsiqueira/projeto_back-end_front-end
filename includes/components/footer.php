@@ -5,8 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-        <footer>
+        <footer id="footer">
                 <p id="paragrafo-footer">Ambientalização &copy; - Desenvolvido por <a href="https://github.com/huandelsiqueira" target="_blank"><strong>Huandel Siqueira das Neves</strong></a></p>
         </footer>
+        
 </body>
 </html>

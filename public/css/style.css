@@ -20,6 +20,10 @@
   height: auto; /* Mantém a proporção da imagem */
 }
 
+#perfil {
+  color: #27f014;
+}
+
 /* Lista de navegação */
 .nav-header ul {
   list-style: none; /* Remove marcadores */
@@ -67,15 +71,38 @@
   font-weight: bold;
 }
 
-/* Responsividade da barra de navegação */
-@media (max-width: 768px) {
+/* Responsividade para tamanhos de tela típicos de telemóveis */
+@media (max-width: 576px) {
   .nav-header {
-      flex-direction: column; /* Navegação em coluna */
+    flex-direction: column;
+    align-items: center;
   }
+
   .nav-header ul {
-      justify-content: center;
+    flex-direction: column; /* Coloca os links um embaixo do outro */
+    width: 100%; /* Faz com que a lista ocupe toda a largura */
+    gap: 20px; /* Aumenta o espaçamento entre os links */
+    padding: 0;
+    margin: 20px 0; /* Adiciona um espaçamento vertical para a lista */
+    align-items: center; /* Centraliza os itens da lista */
+  }
+
+  .nav-header ul li {
+    width: 100%; /* Faz com que cada item da lista ocupe toda a largura */
+    display: flex;
+    justify-content: center; /* Centraliza os links dentro dos itens */
+  }
+
+  .nav-header ul li a {
+    width: 80%; /* Limita a largura dos botões para 80% da tela */
+    max-width: 300px; /* Define uma largura máxima para os botões */
+    padding: 15px; /* Aumenta o padding para melhorar a usabilidade */
+    text-align: center; /* Centraliza o texto dentro do link */
+    font-size: 1.2em; /* Aumenta o tamanho da fonte */
+    border-radius: 8px; /* Bordas levemente arredondadas */
   }
 }
+
 
 /* Footer */
 footer {
@@ -86,6 +113,7 @@ footer {
   color: white;
   text-align: center;
   padding: 10px 0;
+  display: none;
 }
 
 footer a {
@@ -156,7 +184,7 @@ footer a:hover {
 
 /* Seção de conteúdo geral */
 .secao-conteudo {
-  padding: 40px 20px;
+  padding: 60px 20px;
   display: flex;
   flex-direction: column;
   gap: 60px; /* Espaçamento entre seções */
@@ -170,6 +198,10 @@ footer a:hover {
   gap: 20px;
 }
 
+.conteudo .texto {
+  text-align: justify;
+}
+
 .texto h3 {
   font-size: 2rem;
   margin-bottom: 10px;
@@ -181,8 +213,9 @@ footer a:hover {
 
 .conteudo img {
   max-width: 35%;
+  border-radius: 15px;
   height: auto;
-  margin-right: 10%;
+  margin-right: 1%;
 }
 
 /* Responsividade para o conteúdo */
@@ -209,6 +242,7 @@ a {
   height: 100vh; /* Ocupa a altura total da viewport */
   position: relative;
 }
+
 
 
 .image-login {
@@ -268,6 +302,15 @@ a {
   border-radius: 10px; /* Bordas arredondadas */
 } 
 
+.formulario-login h1 {
+  font-size: 2em;
+  color: #159631;
+  margin-bottom: 5%;
+  width: 300px;
+  margin-left: 23%;
+  align-self: flex-start;
+}
+
 .formulario-login form label {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -313,6 +356,10 @@ a {
 
 .formulario-login form a:hover {
   text-decoration: underline;
+}
+
+#cadastre-se {
+  color: #159631;
 }
 
 .cadastro {
@@ -431,3 +478,254 @@ a {
   width: 100%;
   background-color: rgb(194, 194, 194);
 }
+
+.metas-grid {
+  display: grid;
+  margin: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+/* Estilo dos Cards de Meta */
+.meta-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  transition: transform 0.3s; /* Se precisar ajustar a cor do texto para maior contraste */
+}
+
+.meta-card h2, 
+.meta-card p,
+.meta-card a {
+    position: relative; /* Garante que o texto e os links estejam acima da imagem de fundo */
+    z-index: 2;
+    word-wrap: break-word; /* Aumenta o nível do conteúdo sobre a imagem */
+}
+
+.meta-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(62, 78, 98, 0.7); /* Adiciona uma camada escura sobre a imagem para melhorar a legibilidade */
+    z-index: 1; /* Mantém o background abaixo do conteúdo */
+}
+
+.meta-card a {
+    display: inline-block;
+    width: 60px;
+    padding: 7px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.meta-card .status-realizada {
+  color: green;
+}
+
+.meta-card .status-andamento {
+  color: yellow;
+}
+
+.botoes-meta {
+  display: flex;
+  gap: 10px;
+}
+
+.meta-card #concluir {
+  background-color: #159631;
+  width: 20%;
+  padding: 10px;
+}
+
+.meta-card #excluir {
+  background-color: #a01212;
+  width: 20%;
+  padding: 10px;
+}
+
+.meta-card #editar {
+  background-color: #0056b3;
+  padding: 10px;
+}
+
+.meta-card #concluir:hover {
+  background-color: #15c43a;
+}
+
+.meta-card #excluir:hover {
+  background-color: #c71111;
+}
+
+.meta-card #editar:hover {
+    background-color: #1479e4; /* Cor ao passar o mouse */
+}
+
+#titulo-pagina-meta {
+  margin: 20px;
+  color: #374B47;
+}
+
+.botao-criar-meta {
+  margin: 20px;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  border-radius: 10px;
+  background-color: #159631;
+}
+
+.botao-criar-meta:hover {
+  background-color: #374B47;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  display: none; /* Inicialmente oculto */
+  max-width: 400px; /* Limita a largura máxima ao tamanho do contêiner pai */
+  word-wrap: break-word; /* Quebra palavras longas para evitar overflow */
+  margin-top: 5px;
+  text-align: justify; /* Pequeno espaçamento superior para separar do input */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+#concluir {
+
+}
+
+/* Container principal da página de criação de evento */
+.criar-evento-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Seção da imagem de evento */
+.evento-imagem {
+  flex: 1;
+  background-image: url(../../images/background/event-background.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.evento-imagem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.evento-imagem h1, .evento-imagem p {
+  position: relative;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.evento-imagem h1 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.evento-imagem p {
+  font-size: 1.5rem;
+}
+
+/* Seção do formulário de evento */
+.evento-form {
+  flex: 1.5;
+  max-width: 800px;
+  padding: 50px 40px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-evento {
+  width: 100%; /* Ajusta para ocupar toda a largura disponível */
+  max-width: 580px; /* Limita o tamanho do formulário */
+}
+
+.evento-form h1 {
+  font-size: 32px;
+  margin-bottom: 24px;
+  font-family: 'Josefin Sans', sans-serif;
+  align-self: flex-start;
+}
+
+.evento-form form label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.evento-form input,
+.evento-form textarea {
+  width: 100%; /* Ajusta a largura para 100% do contêiner pai */
+  max-width: 580px; /* Limita a largura máxima */
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.evento-form textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.evento-form button {
+  width: 100%; /* Ajusta a largura para 100% do contêiner pai */
+  max-width: 580px; /* Limita a largura máxima */
+  padding: 14px;
+  background-color: #374B47;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  align-self: center; /* Centraliza o botão */
+}
+
+.evento-form button:hover {
+  background-color: #2d4c3c;
+}
+
+

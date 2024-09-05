@@ -15,25 +15,34 @@
         <p>Sua plataforma de desenvolvimento sustentável!</p>
       </section>
       <section class="formulario-login">
-        <form action="../controller/UsuarioController.php" method="post">
+        <h1>Faça seu login!</h1>
+        <form id="loginForm" action="../controller/UsuarioController.php" method="post">
           <input type="hidden" name="acao" value="login">
-          <label for="email">Email:</label>
+          <section class="form-group">
+            <label for="email">Email:</label>
+            <br>
+            <input type="text" name="email" id="email" placeholder="usuario@email.com">
+            <section id="emailError" class="error-message"></section>
+          </section>
           <br>
-          <input type="text" name="email" id="email" placeholder="usuario@email.com">
           <br>
-          <br>
-          <label for="senha">Senha:</label>
-          <br>
-          <input type="password" name="senha" id="senha" placeholder="********">
+          <section class="form-group">
+            <label for="senha">Senha:</label>
+            <br>
+            <input type="password" name="senha" id="senha" placeholder="********">
+            <section id="passwordError" class="error-message"></section>
+          </section>
           <br>
           <br>
           <button type="submit" id='login' name='login' value="login">Login</button>
         </form>
-        <p>Não possui conta? <a href="../../src/view/cadastrarUsuario.php"><strong>Cadastre-se</strong></a></p>
+        <p>Não possui conta? <a id="cadastre-se" href="../../src/view/cadastrarUsuario.php"><strong>Cadastre-se</strong></a></p>
         <br>
         <a href="./index.php"><p>Voltar</p></a>
       </section>
     </section>
   </main>
+  <script src="../../public/js/validacaoDados.js" defer></script>
+  <script src="../../public/js/salvarFormulario.js" defer></script>
 </body>
 </html>

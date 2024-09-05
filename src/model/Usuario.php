@@ -10,28 +10,39 @@ Class Usuario {
 
     public function inserirUsuario($usuario) {
         try {
-            $query = $this->conexao->prepare("INSERT INTO usuario (nome, email, senha, imagem) VALUES (:nome, :email, :senha, :imagem)");
-            $resultado = $query->execute([
-                'nome' => $usuario->nome,
-                'email' => $usuario->email,
-                'senha' => $usuario->senha,
-                'imagem' => $usuario->imagem
-            ]);
-            return $resultado;
+            $sql = "INSERT INTO usuario (nome, email, senha, imagem) VALUES (:nome, :email, :senha, :imagem)";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindParam(':nome', $usuario->nome);
+            $stmt->bindParam(':email', $usuario->email);
+            $stmt->bindParam(':senha', $usuario->senha);
+            $stmt->bindParam(':imagem', $usuario->imagem); // Adiciona o caminho da imagem
+    
+            return $stmt->execute();
         } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+            echo 'Erro: ' . $e->getMessage();
             return false;
         }
     }
+    
 
 
-    function alterarUsuario($usuario){
+    public function atualizarUsuario($id, $nome, $email, $senha, $imagem)
+    {
         try {
-            $query = $this->conexao->prepare("update usuario set nome= :nome, email = :email, senha= :senha where idusuario = :idusuario");
-            $resultado = $query->execute(['nome' => $usuario->getnome(),'email' => $usuario->getemail(), 'senha' => $usuario->getsenha(),'idusuario' => $usuario->getIdUsuario()]);   
-            return $resultado;
-        }catch(PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+            $sql = "UPDATE usuario SET nome = :nome, email = :email, senha = :senha, imagem = :imagem WHERE idusuario = :id";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+            $stmt->bindParam(':imagem', $imagem, PDO::PARAM_STR);
+            
+            // Executa a query
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            throw new Exception('Erro ao atualizar o usuário: ' . $e->getMessage());
         }
     }
 
@@ -59,19 +70,19 @@ Class Usuario {
 
     }
 
-     function buscarUsuario($usuario){
+    public function buscarUsuarioPorId($id)
+    {
         try {
-        $query = $this->conexao->prepare("select * from usuario where idusuario=:idusuario");
-        if($query->execute(['idusuario' => $usuario->getIdUsuario()])){
-            $usuario = $query->fetch(); //coloca os dados num array $usuario
-            return $usuario;
+            // Prepara a consulta para buscar o usuário pelo ID
+            $stmt = $this->conexao->prepare('SELECT * FROM usuario WHERE idusuario = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            // Retorna o resultado como array associativo
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception('Erro ao buscar o usuário: ' . $e->getMessage());
         }
-        else{
-            return false;
-        }
-         }catch(PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
-      }  
     }
 
     public function acessarUsuario($email, $senha) {

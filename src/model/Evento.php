@@ -2,14 +2,17 @@
 
 class Evento {
     public $idevento;
+    public $idUsuario;
     public $nome;
     public $descricao;
     public $conteudo;
     public $data_inicio;
     public $data_fim;
+    
 
-    public function __construct($id = null, $nome = null, $descricao = null, $conteudo = null, $data_inicio = null, $data_fim = null) {
-        $this->id = $id;
+    public function __construct($idevento = null, $idUsuario = null, $nome = null, $descricao = null, $conteudo = null, $data_inicio = null, $data_fim = null) {
+        $this->idevento = $idevento;
+        $this->idUsuario = $idUsuario;
         $this->nome = $nome;
         $this->descricao = $descricao;
         $this->conteudo = $conteudo;
@@ -30,7 +33,7 @@ class Evento {
      */
     public function setId($idevento): self
     {
-        $this->id = $idevento;
+        $this->idevento = $idevento;
 
         return $this;
     }
