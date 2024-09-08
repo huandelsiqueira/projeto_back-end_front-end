@@ -1,0 +1,104 @@
+/* Estilo global */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Estilo do main container */
+main {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Título */
+main h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #28a745;
+}
+
+/* Estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Estilo dos labels */
+form label {
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Estilo dos inputs e textarea */
+form input[type="text"],
+form input[type="date"],
+form input[type="file"],
+form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Foco nos inputs */
+form input:focus,
+form textarea:focus {
+    border-color: #28a745;
+}
+
+/* Estilo do botão de submit */
+form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Estilo do botão de voltar */
+button {
+    background: none;
+    border: none;
+    color: #444;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    text-decoration: none;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    main {
+        width: 90%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,114 @@
+/* Estilo global */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Wrapper para centralizar o card e adicionar margens */
+.section-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    width: 100%;
+}
+
+/* Estilo do card de perfil */
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 550px;
+    max-width: 90%;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza todo o conteúdo */
+}
+
+/* Estilo da imagem de perfil */
+.profile-card img {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #ddd;
+    align-items: center
+}
+
+/* Título do perfil */
+.profile-card h2 {
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Texto descritivo do perfil */
+.profile-card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos grupos de inputs e labels */
+.profile-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: flex-start; /* Mantém os labels e inputs alinhados à esquerda */
+}
+
+/* Estilo dos labels */
+.profile-card form label {
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+    align-items: flex-start;
+}
+
+/* Estilo dos inputs */
+.profile-card form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: calc(100%);
+    box-sizing: border-box;
+}
+
+/* Estilo do botão */
+.profile-card form button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-card form button:hover {
+    background-color: #218838;
+}
+
+/* Estilo para responsividade */
+@media (max-width: 600px) {
+    .profile-card {
+        width: 100%;
+        padding: 20px;
+    }
+}

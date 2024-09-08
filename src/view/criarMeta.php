@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/criarMeta.css">
     <title>Criar Meta</title>
 </head>
 <body>
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <button type="submit">Salvar Meta</button>
         </form>
-        <button onclick="window.location.href='index.php'">Voltar</button>
+        <button onclick="window.location.href='paginaMeta.php'"><strong>Voltar</strong></button>
     </main>
 </body>
 </html>

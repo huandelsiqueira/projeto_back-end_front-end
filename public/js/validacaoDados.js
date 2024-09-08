@@ -4,12 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const nomeInput = document.getElementById('nome');
     const emailCadastroInput = document.getElementById('email'); // Usar 'emailCadastroInput' para evitar conflito com o formulário de login
     const senhaCadastroInput = document.getElementById('senha');
-    const imagemInput = document.getElementById('imagem');
 
     const nomeError = document.getElementById('nomeError');
     const emailCadastroError = document.getElementById('emailError');
     const senhaCadastroError = document.getElementById('senhaError');
-    const imagemError = document.getElementById('imagemError');
 
     // Elementos do formulário de login
     const loginForm = document.getElementById('loginForm');
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (nomeError) nomeError.textContent = '';
             if (emailCadastroError) emailCadastroError.textContent = '';
             if (senhaCadastroError) senhaCadastroError.textContent = '';
-            if (imagemError) imagemError.textContent = '';
 
             // Validação do nome
             if (nomeInput && nomeInput.value.trim() === '') {
@@ -63,12 +60,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 senhaCadastroError.style.display = 'block';
             }
 
-            // Validação da imagem (opcional)
-            if (imagemInput && imagemInput.value === '') {
-                valid = false;
-                imagemError.textContent = 'Por favor, envie uma foto.';
-                imagemError.style.display = 'block';
+            if (emailLoginInput && validateEmail(emailLoginInput.value)) {
+                const email = emailLoginInput.value;
+                const senha = senhaLoginInput.value;
+
+                if (senhaLoginInput.value.trim() === '') {
+                    valid = false;
+                    senhaLoginError.textContent = 'Por favor, insira sua senha.';
+                    senhaLoginError.style.display = 'block';
+                } else if (!validatePassword(senhaLoginInput.value)) {
+                    valid = false;
+                    senhaLoginError.textContent = 'A senha deve ter no mínimo 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial.';
+                    senhaLoginError.style.display = 'block';
+                } else if (validCredentials[email] && validCredentials[email] !== senha) {
+                    // Verifica se o email é válido, mas a senha está incorreta
+                    valid = false;
+                    senhaLoginError.textContent = 'Senha incorreta.';
+                    senhaLoginError.style.display = 'block';
+                }
             }
+
+            // Validação da imagem (opcional)
 
             // Se não for válido, evita o envio do formulário
             if (!valid) {
@@ -138,13 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    if (imagemInput) {
-        imagemInput.addEventListener('input', function () {
-            if (imagemError && imagemError.style.display === 'block') {
-                imagemError.style.display = 'none';
-            }
-        });
-    }
 
     // Eventos para limpar mensagens de erro ao digitar no login
     if (emailLoginInput) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../public/css/style.css">
+  <link rel="stylesheet" href="../../public/css/login.css">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <title>Página de Login</title>
 </head>
@@ -15,8 +15,8 @@
         <p>Sua plataforma de desenvolvimento sustentável!</p>
       </section>
       <section class="formulario-login">
-        <h1>Faça seu login!</h1>
         <form id="loginForm" action="../controller/UsuarioController.php" method="post">
+        <h1>Faça seu login!</h1>
           <input type="hidden" name="acao" value="login">
           <section class="form-group">
             <label for="email">Email:</label>
@@ -38,7 +38,7 @@
         </form>
         <p>Não possui conta? <a id="cadastre-se" href="../../src/view/cadastrarUsuario.php"><strong>Cadastre-se</strong></a></p>
         <br>
-        <a href="./index.php"><p>Voltar</p></a>
+        <a id="login-a" href="./index.php"><p id="link-login-voltar">Voltar</p></a>
       </section>
     </section>
   </main>

@@ -4,29 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página de Cadastro</title>
-  <link rel="stylesheet" href="../../public/css/style.css">
+  <link rel="stylesheet" href="../../public/css/cadastro.css">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <section class="cadastro">
     <section class="formulario-cadastro">
       <form id="cadastroForm" action="../controller/UsuarioController.php" method="post" enctype="multipart/form-data">
+        <h1>Faça seu cadastro!</h1>
         <input type="hidden" name="acao" value="cadastro">
-        <label for="nome">Nome:</label>
-        <br>
-        <input type="text" name="nome" id="nome">
+        <section class="form-group">
+          <label for="nome">Nome:</label>
+          <br>
+          <input type="text" name="nome" id="nome" placeholder="Seu nome">
+        </section>
         <section id="nomeError" class="error-message"></section>
-        <br>
         <br>
         <label for="email">Email:</label>
         <br>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" placeholder="usuario@email.com">
         <section id="emailError" class="error-message"></section>
         <br>
         <br>
         <label for="senha">Senha:</label>
         <br>
-        <input type="password" name="senha" id="senha">
+        <input type="password" name="senha" id="senha" placeholder="********">
         <section id="senhaError" class="error-message"></section>
         <br>
         <br>
@@ -38,8 +40,8 @@
         <br>
         <br>
         <button type="submit" id='cadastrar' name='cadastrar' value="cadastro">Cadastrar</button>
+        <a href="./index.php"><p>Voltar</p></a>
       </form>
-      <a href="./index.php"><p>Voltar</p></a>
     </section>
     <section class="imagem-cadastro">
       <h1>ambientalização</h1>

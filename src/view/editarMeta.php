@@ -1,8 +1,11 @@
 <?php
-// editarMeta.php
 session_start();
-require_once 'db.php'; // Arquivo com a conexão ao banco de dados
-require_once 'Meta.php'; // Modelo Meta com a lógica de salvamento e atualização
+require_once __DIR__ . '/../controller/MetaController.php';
+require_once __DIR__ . '/../model/Meta.php';
+require_once __DIR__ . '/../core/conectaDatabase.php'; // Inclui o ficheiro de conexão com a base de dados
+
+// Inicializa a conexão com a base de dados
+$pdo = conectaDatabase(); // Chama a função para obter a conexão PDO
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
@@ -18,7 +21,7 @@ if (!$id) {
     exit;
 }
 
-// Recupera a meta existente do banco de dados
+// Recupera a meta existente do banco de dados, passando a conexão $pdo
 $meta = Meta::buscarPorId($pdo, $id);
 
 // Verifica se a meta existe e se o usuário logado é o criador
@@ -37,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imagem = $_POST['imagem'];
 
     $metaObj = new Meta($nome, $descricao, $dataInicial, $dataFim, $situacao, $imagem, $meta['criador_id']);
-    $metaObj->id = $id; // Define o ID para editar a meta existente
+    $metaObj->setId($id); // Define o ID para editar a meta existente
 
     try {
-        $metaObj->atualizar($pdo);
+        $metaObj->atualizar($pdo); // Passa a conexão $pdo ao método atualizar
         echo "Meta atualizada com sucesso!";
     } catch (Exception $e) {
         echo "Erro ao atualizar meta: " . $e->getMessage();
@@ -48,25 +51,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../public/css/editarMeta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Editar meta</title>
+</head>
+<body>
+    
+    <section class="formulario-editarMeta">
+        <section class="image-editarMeta">
+            <img src="../../images/uploads/<?php echo $meta['imagem']; ?>" alt="Foto do usuário">
+        </section>
+        <form method="post">
+            <label>Nome:</label>
+            <input type="text" name="nome" value="<?php echo htmlspecialchars($meta['nome']); ?>" required><br>
+        
+            <label>Descrição:</label>
+            <textarea name="descricao" required><?php echo htmlspecialchars($meta['descricao']); ?></textarea><br>
+        
+            <label>Data Inicial:</label>
+            <input type="date" name="dataInicial" value="<?php echo $meta['dataInicial']; ?>" required><br>
+        
+            <label>Data Fim:</label>
+            <input type="date" name="dataFim" value="<?php echo $meta['dataFim']; ?>" required><br>
+        
+            <label>Situação:</label>
+            <input type="text" name="situacao" value="<?php echo htmlspecialchars($meta['situacao']); ?>" required><br>
+        
+            <label>Imagem:</label>
+            <input type="file" name="imagem" value="<?php echo htmlspecialchars($meta['imagem']); ?>"><br>
+        
+            <button type="submit">Atualizar Meta</button>
+        </form>
+    </section>
+</body>
+</html>
 <!-- Formulário de edição da meta -->
-<form method="post">
-    <label>Nome:</label>
-    <input type="text" name="nome" value="<?php echo htmlspecialchars($meta['nome']); ?>" required><br>
-    
-    <label>Descrição:</label>
-    <textarea name="descricao" required><?php echo htmlspecialchars($meta['descricao']); ?></textarea><br>
-    
-    <label>Data Inicial:</label>
-    <input type="date" name="dataInicial" value="<?php echo $meta['dataInicial']; ?>" required><br>
-    
-    <label>Data Fim:</label>
-    <input type="date" name="dataFim" value="<?php echo $meta['dataFim']; ?>" required><br>
-    
-    <label>Situação:</label>
-    <input type="text" name="situacao" value="<?php echo htmlspecialchars($meta['situacao']); ?>" required><br>
-    
-    <label>Imagem:</label>
-    <input type="text" name="imagem" value="<?php echo htmlspecialchars($meta['imagem']); ?>"><br>
-    
-    <button type="submit">Atualizar Meta</button>
-</form>
+

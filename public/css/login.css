@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.section-login {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    flex-direction: row; /* Padrão para telas maiores */
+}
+
+.image-login {
+    background-image: url("../../images/login/noah-buscher-x8ZStukS2PM-unsplash.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.image-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(62, 78, 98, 0.55);
+    z-index: 2;
+}
+
+.image-login h1, .image-login p {
+    position: absolute;
+    color: white;
+    text-align: center;
+    z-index: 3;
+}
+
+.image-login h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 4vw;
+    margin-bottom: 150px;
+} 
+
+.image-login p {
+    font-size: 22px;
+}
+
+.formulario-login {
+    flex: 1.5;
+    max-width: 600px;
+    padding: 60px 40px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    position: relative;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.formulario-login h1 {
+    font-size: 40px;
+    color: #159631;
+    margin-bottom: 5%;
+    width: 100%; /* Alinha à esquerda com os campos */
+    text-align: left; /* Garante que o texto fique alinhado à esquerda */
+    padding-left: 0; /* Remove o deslocamento para a esquerda */
+}
+
+.formulario-login form label {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #374B47;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.formulario-login form input {
+    width: 400px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.formulario-login form button {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    background-color: #374B47;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.formulario-login form button:hover {
+    background-color: #159631;
+}
+
+.formulario-login form a {
+    color: #374B47;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.formulario-login form a:hover {
+    text-decoration: underline;
+}
+
+#link-login-voltar {
+    font-weight: bold;
+    color: #374B47;
+}
+
+#login-a:hover {
+    text-decoration: underline;
+}
+
+#cadastre-se {
+    color: #159631;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none; /* Inicialmente oculto */
+    max-width: 400px; /* Limita a largura máxima ao tamanho do contêiner pai */
+    word-wrap: break-word; /* Quebra palavras longas para evitar overflow */
+    margin-top: 1px;
+    text-align: justify; /* Pequeno espaçamento superior para separar do input */
+  }
+  
+  .form-group {
+    margin-bottom: 5px;
+  }
+
+
+@media screen and (max-width: 768px) {
+    .section-login {
+        flex-direction: column; 
+    }
+
+    .image-login {
+        height: 80vh; 
+    }
+
+    .image-login h1 {
+        font-size: 5vw;
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }
+
+    .formulario-login {
+        max-width: 100%; 
+        padding: 30px 20px;
+    }
+
+    .image-login h1 {
+        font-size: 40px; 
+    }
+
+    .image-login p {
+        font-size: 18px;
+    }
+
+    .formulario-login h1 {
+        font-size: 30px;
+    }
+
+    .formulario-login form input {
+        width: 100%; 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-login h1 {
+        font-size: 5vw; 
+        margin-bottom: 80px;
+    }
+
+    .image-login p {
+        font-size: 14px;
+    }
+
+    .formulario-login h1 {
+        font-size: 24px;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .formulario-login form input {
+        padding: 10px;
+    }
+
+    .formulario-login form button {
+        font-size: 1rem;
+    }
+}

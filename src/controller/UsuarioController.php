@@ -18,17 +18,42 @@ class UsuarioController {
     }
 
     public function criarOuAtualizarUsuario($nome, $email, $senha, $imagem = null) {
-        // Lógica para o upload da imagem
+        // Definir extensões permitidas e tamanho máximo (exemplo: 2MB)
+        $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $tamanhoMaximo = 2 * 1024 * 1024; // 2MB
+    
         $imagemNome = null; // Inicia a variável da imagem como null
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
-            $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']); // Gera nome único para a imagem
-            $caminhoImagem = '../../images/uploads/' . $imagemNome; // Define o caminho onde será salva
-
+            // Verifica a extensão do arquivo
+            $extensaoImagem = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+    
+            if (!in_array($extensaoImagem, $extensoesPermitidas)) {
+                echo "Erro: Tipo de arquivo não permitido. Apenas JPG, JPEG, PNG e GIF são aceitos.";
+                exit();
+            }
+    
+            // Verifica o tamanho do arquivo
+            if ($_FILES['imagem']['size'] > $tamanhoMaximo) {
+                echo "Erro: O arquivo excede o tamanho máximo permitido de 2MB.";
+                exit();
+            }
+    
+            // Verificação se o arquivo enviado é uma imagem
+            $check = getimagesize($_FILES['imagem']['tmp_name']);
+            if ($check === false) {
+                echo "Erro: O arquivo enviado não é uma imagem válida.";
+                exit();
+            }
+    
+            // Gerar um nome único para a imagem
+            $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']);
+            $caminhoImagem = '../../images/uploads/' . $imagemNome;
+    
             // Verifica se o diretório existe, se não, cria
             if (!file_exists('../../images/uploads/')) {
                 mkdir('../../images/uploads/', 0777, true);
             }
-
+    
             // Move o arquivo para o diretório de uploads
             if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem)) {
                 $imagem = $imagemNome; // Salva o nome da imagem no banco de dados
@@ -36,42 +61,61 @@ class UsuarioController {
                 echo "Erro ao salvar a imagem. Verifique as permissões da pasta.";
                 exit();
             }
+        } else {
+            // Se nenhuma imagem foi enviada, definir uma imagem padrão
+            $imagem = '../../images/uploads/default.webp'; // Nome da imagem padrão
         }
-
+    
         // Cria o objeto para o usuário
         $usuario = new stdClass();
         $usuario->nome = $nome;
         $usuario->email = $email;
         $usuario->senha = $senha;
         $usuario->imagem = $imagem; // Associa a imagem ao usuário
-
+    
         return $this->model->inserirUsuario($usuario);
     }
+    
+    
+    
 
     // Adicionando o método atualizarPerfil
     public function atualizarPerfil($id, $nome, $email, $senha, $imagem = null) {
-        // Lógica para o upload da imagem (opcional)
+        // Obtém o usuário atual do banco de dados para recuperar a senha e imagem antigas
+        $usuarioAtual = $this->model->buscarUsuarioPorId($id);
+        
+        // Verifica se uma nova senha foi fornecida, caso contrário, mantém a senha antiga
+        if (empty($senha)) {
+            $senha = $usuarioAtual['senha']; // Mantém a senha antiga
+        } else {
+            // Caso queira adicionar hash de senha, pode fazer isso aqui, por exemplo:
+            // $senha = password_hash($senha, PASSWORD_DEFAULT);
+        }
+    
+        // Verifica se uma nova imagem foi enviada, caso contrário, mantém a imagem antiga
         if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
-            $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']); // Nome único para a imagem
+            $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']);
             $caminhoImagem = '../../images/uploads/' . $imagemNome;
             
-            // Verifica se o diretório existe, se não, cria
             if (!file_exists('../../images/uploads/')) {
                 mkdir('../../images/uploads/', 0777, true);
             }
-
-            // Move o arquivo de upload para o diretório especificado
+    
             if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem)) {
                 $imagem = $imagemNome;
             } else {
                 echo "Erro ao salvar a imagem. Verifique as permissões da pasta.";
                 exit();
             }
+        } else {
+            // Mantém a imagem atual se nenhuma nova for enviada
+            $imagem = $usuarioAtual['imagem'];
         }
-
+    
         // Atualiza o usuário no banco de dados
         return $this->model->atualizarUsuario($id, $nome, $email, $senha, $imagem);
     }
+    
 }
 
 // Verificar se o formulário foi submetido
@@ -125,9 +169,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $senha = $_POST['senha'] ?? null;
         $imagem = $_FILES['imagem']['name'] ?? null;
     
-        if (empty($nome) || empty($email) || empty($senha)) {
-            echo "Erro: Todos os campos são obrigatórios.";
-        } else {
             $idUsuario = $_SESSION['usuario_id']; // Pega o ID do usuário logado
             $resultado = $controller->atualizarPerfil($idUsuario, $nome, $email, $senha, $imagem);
             if ($resultado) {
@@ -139,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Erro ao atualizar perfil.";
             }
         }
-    }
+    
 }
 
 // Lógica de logout fora do bloco POST

@@ -1,366 +1,13 @@
-/* Reset e fonte padrão */
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Montserrat', sans-serif;
-}
 
-/* Estilo da barra de navegação */
-.nav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo preto com 50% de transparência */
-  padding: 10px 20px;
-}
-
-/* Imagem no nav */
-.img-nav-header {
-  max-width: 90px;
-  height: auto; /* Mantém a proporção da imagem */
-}
-
-#perfil {
-  color: #27f014;
-}
-
-/* Lista de navegação */
-.nav-header ul {
-  list-style: none; /* Remove marcadores */
-  display: flex;
-  gap: 15px; /* Espaçamento entre links */
-}
-
-/* Links de navegação */
-.nav-header ul li a {
-  text-decoration: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Link de cadastro */
-.nav-header ul li a[href*="cadastrarUsuario"] {
-  background-color: white;
-  color: black;
-  font-weight: bold;
-}
-
-.nav-header ul li a[href*="cadastrarUsuario"]:hover {
-  background-color: rgba(240, 240, 240, 0.55);
-}
-
-/* Link de login */
-.nav-header ul li a[href*="login"] {
-  border: 2px solid white;
-  background-color: transparent;
-  color: white;
-  font-weight: bold;
-}
-
-/* Efeito hover nos links */
-.nav-header ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.85);
-  color: #0c0c0c;
-}
-
-/* Bem-vindo personalizado */
-.nav-header ul li.bem-vindo {
-  color: rgb(107, 245, 72) !important;
-  font-weight: bold;
-}
-
-/* Responsividade para tamanhos de tela típicos de telemóveis */
-@media (max-width: 576px) {
-  .nav-header {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-header ul {
-    flex-direction: column; /* Coloca os links um embaixo do outro */
-    width: 100%; /* Faz com que a lista ocupe toda a largura */
-    gap: 20px; /* Aumenta o espaçamento entre os links */
-    padding: 0;
-    margin: 20px 0; /* Adiciona um espaçamento vertical para a lista */
-    align-items: center; /* Centraliza os itens da lista */
-  }
-
-  .nav-header ul li {
-    width: 100%; /* Faz com que cada item da lista ocupe toda a largura */
-    display: flex;
-    justify-content: center; /* Centraliza os links dentro dos itens */
-  }
-
-  .nav-header ul li a {
-    width: 80%; /* Limita a largura dos botões para 80% da tela */
-    max-width: 300px; /* Define uma largura máxima para os botões */
-    padding: 15px; /* Aumenta o padding para melhorar a usabilidade */
-    text-align: center; /* Centraliza o texto dentro do link */
-    font-size: 1.2em; /* Aumenta o tamanho da fonte */
-    border-radius: 8px; /* Bordas levemente arredondadas */
-  }
-}
 
 
 /* Footer */
-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #374B47;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  display: none;
-}
 
-footer a {
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: black;
-}
-
-/* Seção com imagem de fundo */
-.secao-img-pagina-inicial {
-  position: relative;
-  height: 50vh;
-  background-image: url('../../images/background/geranimo-qzgN45hseN0-unsplash.webp');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  padding-top: 60px;
-}
-
-.secao-img-pagina-inicial::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(62, 78, 98, 0.55); /* Cor transparente */
-  z-index: 1;
-}
-
-.secao-img-pagina-inicial * {
-  position: relative;
-  z-index: 2; /* Conteúdo na frente da camada */
-}
-
-.secao-img-pagina-inicial h1 {
-  font-size: 4rem;
-  margin-top: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-.secao-img-pagina-inicial input[type="search"] {
-  width: 600px;
-  margin-top: 50px;
-  height: 40px;
-  font-size: 1.2rem;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-}
-
-/* Header fixo */
-.secao-img-pagina-inicial header {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-/* Seção de conteúdo geral */
-.secao-conteudo {
-  padding: 60px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 60px; /* Espaçamento entre seções */
-}
-
-/* Estilo dos conteúdos individuais */
-.conteudo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.conteudo .texto {
-  text-align: justify;
-}
-
-.texto h3 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.texto p {
-  font-size: 1.1rem;
-}
-
-.conteudo img {
-  max-width: 35%;
-  border-radius: 15px;
-  height: auto;
-  margin-right: 1%;
-}
-
-/* Responsividade para o conteúdo */
-@media (max-width: 768px) {
-  .conteudo {
-      flex-direction: column;
-      text-align: center;
-  }
-  .conteudo img {
-      max-width: 100%;
-  }
-}
-
-/* Links padrão */
-a {
-  text-decoration: none;
-  color: inherit;
-}
 
 /* Imagem ao lado do formulário */
-.section-login {
-  display: flex;
-  width: 100%;
-  height: 100vh; /* Ocupa a altura total da viewport */
-  position: relative;
-}
 
 
 
-.image-login {
-  background-image: url("../../images/login/noah-buscher-x8ZStukS2PM-unsplash.jpg");
-  background-size: cover; /* Garante que a imagem cubra toda a seção */
-  background-position: center center; /* Centraliza a imagem na seção */
-  background-repeat: no-repeat; /* Evita repetição da imagem */
-  flex: 1;
-  position: relative;
-  display: flex; /* Permite centralizar o conteúdo */
-  justify-content: center; /* Centraliza o conteúdo horizontalmente */
-  align-items: center; /* Centraliza o conteúdo verticalmente */
-  z-index: 1;
-}
-
-
-.image-login::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(62, 78, 98, 0.55); /* Overlay para escurecer a imagem */
-  z-index: 2;
-} 
-
-.image-login h1, .image-login p {
-  position: absolute;
-  color: white;
-  text-align: center;
-  z-index: 3; /* Garante que o texto fique acima do overlay */
-} 
-
-.image-login h1 {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 6rem;
-  margin-bottom: 150px;
-} 
-
-.image-login p {
-  font-size: 1.5rem;
-} 
-
-.formulario-login {
-  flex: 1.5; /* Aumenta o tamanho do formulário em relação à imagem */
-  max-width: 800px; /* Limite de largura para evitar que fique muito grande */
-  padding: 60px 40px; /* Aumenta o espaçamento interno */
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  position: relative;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-  border-radius: 10px; /* Bordas arredondadas */
-} 
-
-.formulario-login h1 {
-  font-size: 2em;
-  color: #159631;
-  margin-bottom: 5%;
-  width: 300px;
-  margin-left: 23%;
-  align-self: flex-start;
-}
-
-.formulario-login form label {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  color: #374B47;
-  font-size: 1rem;
-  font-weight: bold; /* Tamanho da fonte maior */
-}
-
-.formulario-login form input {
-  width: 400px;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem; /* Tamanho da fonte maior */
-}
-
-.formulario-login form button {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 20px;
-  background-color: #374B47;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1.1rem; /* Tamanho da fonte maior */
-}
-
-.formulario-login form button:hover {
-  background-color: #159631;
-}
-
-.formulario-login form a {
-  color: #374B47;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-  font-size: 1rem; /* Tamanho da fonte maior */
-}
-
-.formulario-login form a:hover {
-  text-decoration: underline;
-}
-
-#cadastre-se {
-  color: #159631;
-}
 
 .cadastro {
   display: flex;
@@ -465,12 +112,12 @@ a {
 
 .imagem-cadastro h1 {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 6rem;
+  font-size: 4em;
   margin-bottom: 150px;
 } 
 
 .imagem-cadastro p {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 } 
 
 #map {
@@ -622,6 +269,7 @@ a {
 }
 
 /* Seção da imagem de evento */
+/* Container da imagem do evento */
 .evento-imagem {
   flex: 1;
   background-image: url(../../images/background/event-background.jpg);
@@ -674,11 +322,13 @@ a {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Formulário */
 .form-evento {
   width: 100%; /* Ajusta para ocupar toda a largura disponível */
   max-width: 580px; /* Limita o tamanho do formulário */
 }
 
+/* Cabeçalho do formulário */
 .evento-form h1 {
   font-size: 32px;
   margin-bottom: 24px;
@@ -686,6 +336,7 @@ a {
   align-self: flex-start;
 }
 
+/* Labels e campos do formulário */
 .evento-form form label {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -710,8 +361,9 @@ a {
   height: 100px;
 }
 
+/* Botão de envio */
 .evento-form button {
-  width: 100%; /* Ajusta a largura para 100% do contêiner pai */
+  width: 100%; /* O botão ocupa toda a largura */
   max-width: 580px; /* Limita a largura máxima */
   padding: 14px;
   background-color: #374B47;
@@ -721,11 +373,51 @@ a {
   cursor: pointer;
   font-size: 1.1rem;
   margin-top: 20px;
-  align-self: center; /* Centraliza o botão */
+  align-self: center; /* Centraliza o botão com os inputs */
 }
 
 .evento-form button:hover {
   background-color: #2d4c3c;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .evento-form {
+    padding: 30px 20px;
+  }
+
+  .evento-imagem h1 {
+    font-size: 2.5rem; /* Reduz o tamanho da fonte em telas menores */
+  }
+
+  .evento-imagem p {
+    font-size: 1.2rem; /* Ajusta o tamanho do texto */
+  }
+
+  .evento-form h1 {
+    font-size: 28px; /* Ajusta o título do formulário */
+  }
+
+  .evento-form input,
+  .evento-form textarea,
+  .evento-form button {
+    max-width: 100%; /* Garante que ocupem toda a largura em telas pequenas */
+  }
+}
+
+@media (max-width: 480px) {
+  .evento-imagem h1 {
+    font-size: 2rem; /* Reduz ainda mais em telas muito pequenas */
+  }
+
+  .evento-imagem p {
+    font-size: 1rem;
+  }
+
+  .evento-form {
+    padding: 20px 15px; /* Ajusta o padding para telas muito pequenas */
+  }
+}
+
 
 

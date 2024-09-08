@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  
+  .nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 20px;
+  }
+  
+
+  .img-nav-header {
+    max-width: 90px;
+    height: auto; 
+  }
+  
+  #perfil {
+    color: #27f014;
+  }
+  
+  
+  .nav-header ul {
+    list-style: none; 
+    display: flex;
+    gap: 15px; 
+  }
+  
+  
+  .nav-header ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  
+  .nav-header ul li a[href*="cadastrarUsuario"] {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .nav-header ul li a[href*="cadastrarUsuario"]:hover {
+    background-color: rgba(240, 240, 240, 0.55);
+  }
+  
+ 
+  .nav-header ul li a[href*="login"] {
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+  }
+  
+  
+  .nav-header ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    color: #0c0c0c;
+  }
+  
+  
+  .nav-header ul li.bem-vindo {
+    color: rgb(107, 245, 72) !important;
+    font-weight: bold;
+  }
+  
+  
+  @media (max-width: 576px) {
+    .nav-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav-header ul {
+      flex-direction: column; 
+      width: 100%; 
+      gap: 20px; 
+      padding: 0;
+      margin: 20px 0; 
+      align-items: center;
+    }
+  
+    .nav-header ul li {
+      width: 100%; 
+      display: flex;
+      justify-content: center;
+    }
+  
+    .nav-header ul li a {
+      width: 80%;
+      max-width: 300px; 
+      padding: 15px; 
+      text-align: center; 
+      font-size: 1.2em; 
+      border-radius: 8px; 
+    }
+  }

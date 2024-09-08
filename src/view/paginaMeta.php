@@ -23,7 +23,7 @@ $usuarioLogado = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : null
         <h1 id="titulo-pagina-meta">Metas sustentáveis</h1>
         <?php if ($usuarioLogado): ?>
             <a href="criarMeta.php">
-                <section class="botao-criar-meta"><p>Criar Novo Evento</p></section>
+                <section class="botao-criar-meta"><p>Criar Nova Meta</p></section>
             </a>
         <?php endif; ?>
         <section class="metas-grid">

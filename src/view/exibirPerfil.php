@@ -61,109 +61,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuário</title>
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <style>
-        /* Seu CSS */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .profile-card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 500px;
-            max-width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .profile-card img {
-            border-radius: 50%;
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .profile-card h2 {
-            margin: 10px 0;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .profile-card p {
-            font-size: 16px;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .profile-card form input,
-        .profile-card form button {
-            width: 95%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .profile-card form button {
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            width: 300px;
-        }
-
-        .profile-card form button:hover {
-            background-color: #218838;
-        }
-
-        @media (max-width: 600px) {
-            .profile-card {
-                width: 90%;
-            }
-        }
-
-        .section-perfil {
-            display: flex;
-            margin-top:40px;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../../public/css/perfil.css">
 </head>
 <body>
 <?php require('../../includes/components/header.php')?>
 <section class="section-perfil">
     <section class="profile-card">
+    <img src="../../images/uploads/<?php echo $usuario['imagem']; ?>" alt="Foto do usuário">
         <form id="perfilForm" action="../controller/UsuarioController.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="acao" value="editarPerfil">
     
             <!-- Exibição da foto do perfil -->
-            <img src="../../images/uploads/<?php echo $usuario['imagem']; ?>" alt="Foto do usuário">
-    
+            
             <!-- Nome -->
-            <h2><?php echo htmlspecialchars($usuario['nome']); ?></h2>
+             <br>
+            <label for="nome"><strong>Nome:</strong></label>
             <input type="text" name="nome" id="nome" value="<?php echo htmlspecialchars($usuario['nome']); ?>">
     
             <!-- Email -->
-            <p><?php echo htmlspecialchars($usuario['email']); ?></p>
+            <label for="email"><strong>Email:</strong></label>
             <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($usuario['email']); ?>">
     
             <!-- Atualização de senha -->
-            <label for="senha">Alterar senha:</label>
+            <label for="senha"><strong>Senha:</strong></label>
             <input type="password" name="senha" id="senha" placeholder="Nova senha">
     
             <!-- Atualização da foto -->
-            <label for="imagem">Alterar foto:</label>
+            <label for="imagem"><strong>Foto:</strong></label>
             <input type="file" name="imagem" id="imagem">
     
             <!-- Botão para salvar alterações -->
@@ -171,6 +95,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </section>
 </section>
-
 </body>
 </html>

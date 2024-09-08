@@ -1,7 +1,6 @@
 <?php
 
  // Start the session here
-
 include_once '../core/conectaDatabase.php';
 include_once '../model/Meta.php';
 
@@ -33,9 +32,24 @@ class MetaController
 
     public function editarMeta($id, $nome, $descricao, $dataInicial, $dataFim, $situacao, $imagem)
     {
+        // Buscar meta existente
+        $metaExistente = Meta::buscarPorId($this->pdo, $id);
+
+        if (!$metaExistente) {
+            throw new Exception('Meta não encontrada.');
+        }
+
+        // Manter a imagem existente se nenhuma nova for enviada
+        if (empty($imagem)) {
+            $imagem = $metaExistente['imagem']; // Mantém a imagem atual se uma nova não for fornecida
+        }
+
         $meta = new Meta($nome, $descricao, $dataInicial, $dataFim, $situacao, $imagem);
         $meta->setId($id);
-        $meta->atualizar($this->pdo);
+        
+        if (!$meta->atualizar($this->pdo)) {
+            throw new Exception('Erro ao atualizar a meta.');
+        }
     }
 
     public function excluirMeta($id)
@@ -69,40 +83,49 @@ class MetaController
 
     public function handleCreateMetaRequest()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $nome = $_POST['nome'];
             $descricao = $_POST['descricao'];
             $dataInicial = $_POST['dataInicial'];
             $dataFim = $_POST['dataFim'];
-            $situacao = 'Não Iniciada'; // Meta começa sempre como 'Em Andamento'
-
-            // Tratamento de upload de imagem
-            $imagem = '';
+            $situacao = $_POST['situacao'];
+        
+            // Tratamento de imagem
+            $imagem = $meta['imagem']; // Mantém a imagem atual como padrão
             if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
-                $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']); // Nome único para evitar conflitos
+                $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+                $tamanhoMaximo = 2 * 1024 * 1024; // 2MB
+                $extensaoImagem = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+        
+                if (!in_array($extensaoImagem, $extensoesPermitidas)) {
+                    echo "Erro: Tipo de arquivo não permitido.";
+                    exit();
+                }
+        
+                if ($_FILES['imagem']['size'] > $tamanhoMaximo) {
+                    echo "Erro: O arquivo excede o tamanho máximo permitido de 2MB.";
+                    exit();
+                }
+        
+                $imagemNome = uniqid() . '-' . basename($_FILES['imagem']['name']);
                 $caminhoImagem = '../../images/uploads/' . $imagemNome;
-                
-                // Verifica se o diretório existe, se não, cria
-                if (!file_exists('../../images/uploads/')) {
-                    mkdir('../../images/uploads/', 0777, true);
-                }
-
-                // Move o arquivo de upload para o diretório especificado
+        
                 if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoImagem)) {
-                    $imagem = $imagemNome; // Salva o nome da imagem para o banco de dados
+                    $imagem = $imagemNome; // Atualiza o nome da imagem
                 } else {
-                    echo "Erro ao salvar a imagem. Verifique as permissões da pasta e o caminho.";
-                    exit; // Adiciona um exit para evitar continuar em caso de erro
+                    echo "Erro ao salvar a imagem.";
+                    exit();
                 }
-            } else if (isset($_FILES['imagem'])) {
-                echo "Erro no upload da imagem: " . $_FILES['imagem']['error'];
-                exit; // Adiciona um exit para evitar continuar em caso de erro
             }
-
-            $this->adicionarMeta($nome, $descricao, $dataInicial, $dataFim, $situacao, $imagem);
-
-            header('Location: ./paginaMeta.php');
-            exit();
+        
+            $metaObj = new Meta($nome, $descricao, $dataInicial, $dataFim, $situacao, $imagem, $meta['criador_id']);
+            $metaObj->setId($id); // Define o ID para editar a meta existente
+            
+            if ($metaObj->atualizar($pdo)) {
+                echo "Meta atualizada com sucesso!";
+            } else {
+                echo "Erro ao atualizar a meta.";
+            }
         }
     }
 

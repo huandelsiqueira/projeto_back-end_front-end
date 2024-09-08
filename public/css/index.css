@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+.secao-img-pagina-inicial {
+    position: relative;
+    height: 50vh;
+    background-image: url('../../images/background/geranimo-qzgN45hseN0-unsplash.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding-top: 60px;
+  }
+  
+  .secao-img-pagina-inicial::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(62, 78, 98, 0.55); 
+    z-index: 1;
+  }
+  
+  .secao-img-pagina-inicial * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .secao-img-pagina-inicial h1 {
+    font-size: 4rem;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  .secao-img-pagina-inicial input[type="search"] {
+    width: 600px;
+    margin-top: 50px;
+    height: 40px;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  
+  .secao-img-pagina-inicial header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  
+
+  .secao-conteudo {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px; 
+  
+  }
+  
+  .conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .conteudo .texto {
+    text-align: justify;
+  }
+  
+  .texto h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .texto p {
+    font-size: 1.1rem;
+  }
+  
+  .conteudo img {
+    max-width: 35%;
+    border-radius: 15px;
+    height: auto;
+    margin-right: 1%;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .conteudo {
+        flex-direction: column;
+        text-align: center;
+    }
+    .conteudo img {
+        max-width: 100%;
+    }
+  }
+  
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }

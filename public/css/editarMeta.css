@@ -1,0 +1,77 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.image-editarMeta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-editarMeta img {
+    width: 500px; /* Ajusta o tamanho da imagem */
+    height: 300px;
+    border-radius: 10px; /* Torna a imagem circular */
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-editarMeta {
+    background-color: white;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 650px; /* Ajusta conforme necessário */
+}
+
+.formulario-editarMeta form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-editarMeta label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.formulario-editarMeta input[type="text"],
+.formulario-editarMeta input[type="date"],
+.formulario-editarMeta input[type="file"],
+.formulario-editarMeta textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100%); /* Ajusta o campo de entrada */
+    box-sizing: border-box;
+}
+
+.formulario-editarMeta textarea {
+    resize: none;
+    height: 80px;
+}
+
+.formulario-editarMeta button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.formulario-editarMeta button:hover {
+    background-color: #218838;
+}

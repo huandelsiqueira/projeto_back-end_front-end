@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #374B47;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+  }
+  
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: black;
+  }
+  
+  
+  
+  
+  /* Links padrão */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
